@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const BackgroundAnimation = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -9,8 +9,8 @@ const BackgroundAnimation = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+    let animationId;
+    const particles = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -33,7 +33,6 @@ const BackgroundAnimation = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -50,7 +49,6 @@ const BackgroundAnimation = () => {
         }
       }
 
-      // Draw particles
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;

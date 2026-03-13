@@ -2,15 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, CheckCircle2, Clock, Shield } from "lucide-react";
 
-interface FeedEvent {
-  id: number;
-  message: string;
-  status: "success" | "processing" | "critical";
-  time: string;
-  repo?: string;
-}
-
-const initialEvents: FeedEvent[] = [
+const initialEvents = [
   { id: 1, message: "PR #47 analyzed", status: "success", time: "09:41", repo: "payment-service" },
   { id: 2, message: "SQL Injection detected", status: "critical", time: "09:41", repo: "payment-service" },
   { id: 3, message: "Patch generated successfully", status: "success", time: "09:41" },
@@ -23,7 +15,7 @@ const initialEvents: FeedEvent[] = [
   { id: 10, message: "Container sandbox healthy", status: "success", time: "09:45" },
 ];
 
-const cycleEvents: FeedEvent[] = [
+const cycleEvents = [
   { id: 100, message: "PR #52 opened by @dev-team", status: "processing", time: "now", repo: "auth-service" },
   { id: 101, message: "XSS vulnerability patched", status: "success", time: "now" },
   { id: 102, message: "Memory anomaly check passed", status: "success", time: "now" },
@@ -37,7 +29,7 @@ const statusConfig = {
 };
 
 const LiveFeed = () => {
-  const [events, setEvents] = useState<FeedEvent[]>(initialEvents);
+  const [events, setEvents] = useState(initialEvents);
   const [cycleIndex, setCycleIndex] = useState(0);
 
   useEffect(() => {

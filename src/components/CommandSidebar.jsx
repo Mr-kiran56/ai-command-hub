@@ -29,7 +29,6 @@ const CommandSidebar = () => {
 
   return (
     <div className="w-56 h-screen flex flex-col bg-sidebar border-r border-border/50 relative z-10 shrink-0">
-      {/* Logo */}
       <div className="p-4 border-b border-border/50">
         <div className="flex items-center gap-2">
           <Shield className="w-6 h-6 neon-text-blue" />
@@ -40,7 +39,6 @@ const CommandSidebar = () => {
         </div>
       </div>
 
-      {/* Nav */}
       <nav className="flex-1 py-3 px-2 space-y-0.5 overflow-y-auto scrollbar-cyber">
         {navItems.map((item, i) => (
           <motion.button
@@ -70,7 +68,6 @@ const CommandSidebar = () => {
         ))}
       </nav>
 
-      {/* Status */}
       <div className="p-3 border-t border-border/50 space-y-2">
         {statusItems.map((s) => (
           <div key={s.label} className="flex items-center justify-between text-[10px]">

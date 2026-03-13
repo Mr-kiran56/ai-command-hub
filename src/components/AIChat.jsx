@@ -2,14 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Github, Database, Zap } from "lucide-react";
 
-interface Message {
-  id: number;
-  type: "ai" | "user";
-  content: string;
-  timestamp: string;
-}
-
-const initialMessages: Message[] = [
+const initialMessages = [
   {
     id: 1, type: "ai", timestamp: "09:41",
     content: "🔍 PR #47 analyzed\n⚠️ 2 vulnerabilities detected\n🔧 Generating secure patch...\n✅ Fix branch created: fix/sql-injection-47",
@@ -41,10 +34,10 @@ const suggestions = [
 ];
 
 const AIChat = () => {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -52,7 +45,7 @@ const AIChat = () => {
 
   const handleSend = () => {
     if (!input.trim()) return;
-    const userMsg: Message = {
+    const userMsg = {
       id: Date.now(),
       type: "user",
       content: input,
@@ -77,7 +70,6 @@ const AIChat = () => {
 
   return (
     <div className="flex flex-col h-full bg-card/40 backdrop-blur-sm border-r border-border/50 relative z-10">
-      {/* Header */}
       <div className="p-3 border-b border-border/50 glass-card rounded-none">
         <div className="flex items-center justify-between">
           <div>
@@ -98,7 +90,6 @@ const AIChat = () => {
         </div>
       </div>
 
-      {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-3 scrollbar-cyber">
         <AnimatePresence>
           {messages.map((msg) => (
@@ -136,7 +127,6 @@ const AIChat = () => {
         )}
       </div>
 
-      {/* Suggestions */}
       <div className="px-3 py-1.5 flex gap-1.5 flex-wrap">
         {suggestions.map((s) => (
           <button
@@ -149,7 +139,6 @@ const AIChat = () => {
         ))}
       </div>
 
-      {/* Input */}
       <div className="p-3 border-t border-border/50">
         <div className="flex items-center gap-2 glass-card rounded-lg px-3 py-2 glow-border-blue">
           <input

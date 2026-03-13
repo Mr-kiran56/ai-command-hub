@@ -1,21 +1,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Database, Wrench, Cpu, Container, Brain } from "lucide-react";
 
-interface StatItem {
-  label: string;
-  value: string | number;
-  color?: string;
-}
-
-interface StatsCardProps {
-  title: string;
-  icon: React.ReactNode;
-  stats: StatItem[];
-  glowClass?: string;
-  delay?: number;
-}
-
-const StatsCard = ({ title, icon, stats, glowClass = "glow-border-blue", delay = 0 }: StatsCardProps) => (
+const StatsCard = ({ title, icon, stats, glowClass = "glow-border-blue", delay = 0 }) => (
   <motion.div
     initial={{ opacity: 0, y: 15 }}
     animate={{ opacity: 1, y: 0 }}
@@ -37,7 +23,7 @@ const StatsCard = ({ title, icon, stats, glowClass = "glow-border-blue", delay =
   </motion.div>
 );
 
-const ProgressBar = ({ value, color }: { value: number; color: string }) => (
+const ProgressBar = ({ value, color }) => (
   <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
     <motion.div
       initial={{ width: 0 }}
@@ -100,7 +86,6 @@ const SystemMonitor = () => {
         delay={0.3}
       />
 
-      {/* Docker Sandbox */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -134,7 +119,6 @@ const SystemMonitor = () => {
         </div>
       </motion.div>
 
-      {/* ML Shield */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
